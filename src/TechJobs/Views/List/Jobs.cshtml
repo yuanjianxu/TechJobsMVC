@@ -8,23 +8,19 @@
 
 @if (ViewBag.jobs != null)
 {
-
-    @foreach (Dictionary<string, string> dic in ViewBag.jobs)
+    @for (int i = 0; i < ViewBag.jobs.Count; i++)
     {
         <table>
-            @for (int i = 0; i < ViewBag.jobs.Count; i++)
-            {
-                <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
-                    <td>
-                        @foreach (KeyValuePair<string, string> keyValuePair in dic)
-                        {
-                            <a asp-controller="List" asp-action="Jobs" asp-route-column="@keyValuePair.Key" asp-route-value="@keyValuePair.Value"><strong>@keyValuePair.Key :</strong></a>
-                            <a asp-controller="List" asp-action="Jobs" asp-route-column="@keyValuePair.Key" asp-route-value="@keyValuePair.Value">@keyValuePair.Value</a><br>
-                        }
-                    </td>
-                </tr>
 
-            }
+            <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
+                <td>
+                    @foreach (KeyValuePair<string, string> keyValuePair in ViewBag.jobs[i])
+                    {
+                        <a asp-controller="List" asp-action="Jobs" asp-route-column="@keyValuePair.Key" asp-route-value="@keyValuePair.Value"><strong>@keyValuePair.Key :</strong></a>
+                        <a asp-controller="List" asp-action="Jobs" asp-route-column="@keyValuePair.Key" asp-route-value="@keyValuePair.Value">@keyValuePair.Value</a><br>
+                    }
+                </td>
+            </tr>
         </table>
     }
 }
